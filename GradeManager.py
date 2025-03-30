@@ -1,9 +1,3 @@
-print("=========================================================================================================================================")
-print("          학번          이름          영어          C-언어          파이썬          총점          평균          학점          등수          ")
-print("=========================================================================================================================================")
-
-students = []
-
 def calculate_grade(avg):
     if 95 <= avg <= 100:
         return "A+"
@@ -28,23 +22,38 @@ def calculate_grade(avg):
     else:
         return "F"
 
-for i in range(5):
-    student_num = input("학번: ")
-    name = input("이름: ")
-    eng = int(input("영어: "))
-    c_lang = int(input("C-언어: "))
-    python = int(input("파이썬: "))
-    total = eng + c_lang + python
-    avg = total / 3
-    grade = calculate_grade(avg)
-    students.append([student_num, name, eng, c_lang, python, total, avg, grade])
+def calculate_total_and_avg(scores):
+    total = sum(scores)
+    avg = total / len(scores)
+    return total, avg
 
-students.sort(key=lambda x: x[5], reverse=True)
-for rank, student in enumerate(students, start=1):
-    student.append(rank)
+def input_student_data():
+    students = []
+    for i in range(5):
+        student_num = input("학번: ")
+        name = input("이름: ")
+        eng = int(input("영어: "))
+        c_lang = int(input("C-언어: "))
+        python = int(input("파이썬: "))
+        total, avg = calculate_total_and_avg([eng, c_lang, python])
+        grade = calculate_grade(avg)
+        students.append([student_num, name, eng, c_lang, python, total, avg, grade])
+    return students
 
-print("=========================================================================================================================================")
-print("          학번          이름          영어          C-언어          파이썬          총점          평균          학점          등수          ")
-print("=========================================================================================================================================")
-for s in students:
-    print(f"{s[0]:<15}{s[1]:<10}{s[2]:<10}{s[3]:<10}{s[4]:<10}{s[5]:<10}{s[6]:.2f}      {s[7]:<5}      {s[8]:<5}")
+def print_results(students):
+    students.sort(key=lambda x: x[5], reverse=True)
+    for rank, student in enumerate(students, start=1):
+        student.append(rank)
+    
+    print("=========================================================================================================================================")
+    print("          학번          이름          영어          C-언어          파이썬          총점          평균          학점          등수          ")
+    print("=========================================================================================================================================")
+    for s in students:
+        print(f"{s[0]:<15}{s[1]:<10}{s[2]:<10}{s[3]:<10}{s[4]:<10}{s[5]:<10}{s[6]:.2f}      {s[7]:<5}      {s[8]:<5}")
+
+def main():
+    students = input_student_data()
+    print_results(students)
+
+if __name__ == "__main__":
+    main()
