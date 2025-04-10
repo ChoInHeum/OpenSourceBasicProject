@@ -1,3 +1,9 @@
+##################################
+# 프로그램 명: 성적 관리 프로그램
+# 작성자: 조인흠
+# 작성일: 2025/4/11
+# 프로그램 설명: 성적에 따른 학점 부여 함수인 calculate_grade, 성적의 전체 평균을 계산하는 calculate_total_and_avg, 학생 데이터를 입력받는 input_student_data, 순위를 매기는 sort()함수로 구성되어 있음음
+
 def calculate_grade(avg):
     if 95 <= avg <= 100:
         return "A+"
@@ -40,7 +46,7 @@ def input_student_data():
         students.append([student_num, name, eng, c_lang, python, total, avg, grade])
     return students
 
-def print_results(students):
+def sort(students):
     students.sort(key=lambda x: x[5], reverse=True)
     for rank, student in enumerate(students, start=1):
         student.append(rank)
@@ -53,7 +59,7 @@ def print_results(students):
 
 def main():
     students = input_student_data()
-    print_results(students)
+    sort(students)
 
 if __name__ == "__main__":
     main()
