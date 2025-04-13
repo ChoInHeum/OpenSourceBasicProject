@@ -3,6 +3,7 @@
 # 작성자: 조인흠
 # 작성일: 2025/4/11
 # 프로그램 설명: 성적에 따른 학점 부여 함수인 calculate_grade, 성적의 전체 평균을 계산하는 calculate_total_and_avg, 학생 데이터를 입력받는 input_student_data, 순위를 매기는 sort()함수로 구성되어 있음음
+##################################
 
 def calculate_grade(avg):
     if 95 <= avg <= 100:
